@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}title{% endblock %}
+
+{% block content %}
+<table class="table table-hover">
+   <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">ФИО</th>
+      <th scope="col">Должность</th>
+      <th scope="col">Рабочая группа</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for sotrydnik in sotrydniks %}
+    <tr>
+      <th scope="row">{{ sotrydnik.id }}</th>
+      <td>{{ sotrydnik.name }}</td>
+      <td>{{ sotrydnik.position }}</td>
+      <td>{{ sotrydnik.workgroup }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
