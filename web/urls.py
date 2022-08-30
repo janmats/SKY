@@ -22,4 +22,5 @@ urlpatterns = [
     path('', views.index),
     path('groups', views.groups),
     path('help', views.help),
+    path('createworker', views.createworker),
 ]

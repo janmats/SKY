@@ -13,12 +13,13 @@
     </tr>
   </thead>
   <tbody>
-  {% for sotrydnik in sotrydniks %}
+  {% for worker in workers %}
     <tr>
-      <th scope="row">{{ sotrydnik.id }}</th>
-      <td>{{ sotrydnik.name }}</td>
-      <td>{{ sotrydnik.position }}</td>
-      <td>{{ sotrydnik.workgroup }}</td>
+      <th scope="row">{{ worker.id }}</th>
+      <td>{{ worker.name }}</td>
+      <td>{{ worker.position }}</td>
+      <td>{{ worker.workgroup }}</td>
+      <td><button type="button" class="btn btn-outline-danger">Удалить</button></td>
     </tr>
   {% endfor %}
   </tbody>

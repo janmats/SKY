@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}title{% endblock %}
+
+{% block content %}
+
+<form method="post" action="createworker">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="inputName" class="form-label">ФИО</label>
+    <input type="text" name="name" class="form-control" id="inputName">
+  </div>
+  <div class="mb-3">
+    <label for="inputPosition" class="form-label">Должность</label>
+    <input type="text" name="position" class="form-control" id="inputPosition">
+  </div>
+    <div class="mb-3">
+    <label for="inputWorkgroup" class="form-label">Рабочая группа</label>
+    <input type="text" name="workgroup" class="form-control" id="inputWorkgroup">
+    </div>
+    <input type="submit" value="Добавить" />
+</form>
+
+{% endblock %}
