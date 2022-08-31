@@ -23,4 +23,5 @@ urlpatterns = [
     path('groups', views.groups),
     path('help', views.help),
     path('createworker', views.createworker),
+    path('deleteworker/<int:id>', views.deleteworker, name='deleteworker')
 ]

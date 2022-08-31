@@ -3,27 +3,6 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from web.models import *
 
-worker_data=[
-    {
-        'id': '1',
-        'name': 'Иванов',
-        'position':'Директор',
-        'workgroup':'административная группа'
-    },
-{
-        'id': '2',
-        'name':'Петров',
-        'position':'Менеджер',
-        'workgroup':'Менеджерская группа'
-    },
-{
-        'id': '3',
-        'name':'Сидоров',
-        'position':'уборщик',
-        'workgroup':'Клининг группа'
-    }
-]
-
 def index(request):
     return render(request, 'index.html', {
         'workers':Worker.objects.all()
@@ -47,5 +26,11 @@ def createworker(request):
         Worker(name=name, position=position, workgroup=workgroup).save()
 
         return redirect('/')
+
+def deleteworker(request, id):
+    if request.method=='POST':
+       worker = Worker.objects.get(id=id)
+       worker.delete()
+       return redirect('/')
 
 
