@@ -15,7 +15,7 @@
   <tbody>
   {% for worker in workers %}
     <tr>
-      <th scope="row">{{ worker.id }}</th>
+      <th scope="row">{{ forloop.counter }}</th>
       <td>{{ worker.name }}</td>
       <td>{{ worker.position }}</td>
       <td>{{ worker.workgroup }}</td>
