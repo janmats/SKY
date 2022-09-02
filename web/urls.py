@@ -22,6 +22,6 @@ urlpatterns = [
     path('', views.index),
     path('groups', views.groups),
     path('help', views.help),
-    path('createworker', views.createworker),
+    path('createworker', views.createworker, name='createworker'),
     path('deleteworker/<int:id>', views.deleteworker, name='deleteworker')
 ]
