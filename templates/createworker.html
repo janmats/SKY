@@ -16,7 +16,15 @@
   </div>
     <div class="mb-3">
     <label for="inputWorkgroup" class="form-label">Рабочая группа</label>
-    <input type="text" name="workgroup" class="form-control" id="inputWorkgroup">
+    <select id="inputWorkgroup" name = "workgroup" class="form-select" aria-label="Default select example">
+      <option selected>Open this select menu</option>
+      {% for workgroup in workgroups %}
+
+      <option value="{{ workgroup.name }}">{{ workgroup.name }}</option>
+
+      {% endfor %}
+
+     </select>
     </div>
     <input class="btn btn-primary" type="submit" value="Добавить" />
 </form>

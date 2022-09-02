@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}title{% endblock %}
+
+{% block content %}
+
+
+<form method="post" action="createworkgroup">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="inputName" class="form-label">Название группы</label>
+    <input type="text" name="name" class="form-control" id="inputName">
+  </div>
+  <input class="btn btn-primary" type="submit" value="Добавить" />
+</form>
+
+{% endblock %}

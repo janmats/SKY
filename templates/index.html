@@ -20,7 +20,7 @@
       <th scope="row">{{ forloop.counter }}</th>
       <td>{{ worker.name }}</td>
       <td>{{ worker.position }}</td>
-      <td>{{ worker.workgroup }}</td>
+      <td>{{ worker.workgroup.name }}</td>
       <form  method='POST' action="{% url 'deleteworker' id=worker.id %}">
          {% csrf_token %}
          <input type=hidden name='delete' value='{{worker.id}}'>

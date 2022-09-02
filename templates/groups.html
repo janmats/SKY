@@ -3,5 +3,25 @@
 {% block title %}title{% endblock %}
 
 {% block content %}
-<h1>groups</h1>
+
+<a class="btn btn-primary" href="{% url 'createworkgroup' %}" role="button">Добавить</a>
+</br>
+
+<table class="table table-hover">
+   <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Название группы</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for workgroup in workgroups %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{ workgroup.name }}</td>
+      <td><button type="submit" class="btn btn-outline-danger">Удалить</button></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
 {% endblock %}
