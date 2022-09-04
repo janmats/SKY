@@ -25,5 +25,6 @@ urlpatterns = [
     path('createworker', views.createworker, name='createworker'),
     path('deleteworker/<int:id>', views.deleteworker, name='deleteworker'),
     path("createworkgroup", views.createworkgroup, name='createworkgroup'),
-    path('deletewokgroup/<int:id>', views.deleteworkgroup, name='deleteworkgroup')
+    path('deletewokgroup/<int:id>', views.deleteworkgroup, name='deleteworkgroup'),
+    path('editpersonaldata/<int:id>', views.editpersonaldata, name='editpersonaldata')
 ]

@@ -53,3 +53,21 @@ def deleteworkgroup(request, id):
        return redirect('/groups')
 
 
+def editpersonaldata(request, id):
+    if request.method=='GET':
+        return render(request, 'editpersonaldata.html', {
+        'worker':Worker.objects.get(id=id)
+    })
+    else:
+        if request.method=='POST':
+
+            worker = Worker.objects.get(id=id)
+            birthdate = request.POST['birthdate']
+            address = request.POST['address']
+            email = request.POST['email']
+
+            Personaldata(worker=worker, birthdate=birthdate, address=address, email=email).save()
+
+            return redirect('/')
+
+

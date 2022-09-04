@@ -6,7 +6,7 @@
 
 <script>
     $(document).ready(function(){
-      var date_input=$('input[name="date"]'); //our date input has the name "date"
+      var date_input=$('input[name="birthdate"]'); //our date input has the name "date"
       var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
       var options={
         format: 'mm/dd/yyyy',
@@ -18,29 +18,25 @@
     })
 </script>
 
-<form method="post" action="createworker">
+<form method="post" action="editpersonaldata">
   {% csrf_token %}
   <div class="mb-3">
     <label for="inputName" class="form-label">ФИО</label>
-   <input id = "inputName" class="form-control" type="text" value="Disabled readonly input" aria-label="Disabled input example" disabled readonly>
+   <input id = "inputName" class="form-control" type="text" value="{{worker.name}}" aria-label="Disabled input example" disabled readonly>
   </div>
   <div class="mb-3">
     <label for="inputBirthdate" class="form-label">Дата рождения</label>
-    <input class="form-control" id="inputBirthdate" name="date" placeholder="MM/DD/YYY" type="text"/>
+    <input class="form-control" id="inputBirthdate" name="birthdate" placeholder="MM/DD/YYY" type="text"/>
   </div>
     <div class="mb-3">
-    <label for="inputWorkgroup" class="form-label">Рабочая группа</label>
-    <select id="inputWorkgroup" name = "workgroup" class="form-select" aria-label="Default select example">
-      <option selected>Open this select menu</option>
-      {% for workgroup in workgroups %}
-
-      <option value="{{ workgroup.name }}">{{ workgroup.name }}</option>
-
-      {% endfor %}
-
-     </select>
-    </div>
-    <input class="btn btn-primary" type="submit" value="Добавить" />
+    <label for="inputAddress" class="form-label">Адрес</label>
+    <input type="text" name="address" class="form-control" id="inputAddress">
+  </div>
+  <div class="mb-3">
+    <label for="inputEmail" class="form-label">Электронная почта</label>
+    <input type="text" name="email" class="form-control" id="inputEmail">
+  </div>
+  <input class="btn btn-primary" type="submit" value="Сохранить" />
 </form>
 
 {% endblock %}
