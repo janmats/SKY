@@ -4,6 +4,20 @@
 
 {% block content %}
 
+<script>
+    $(document).ready(function(){
+      var date_input=$('input[name="date"]'); //our date input has the name "date"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'mm/dd/yyyy',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
+</script>
+
 <form method="post" action="createworker">
   {% csrf_token %}
   <div class="mb-3">
@@ -11,8 +25,8 @@
    <input id = "inputName" class="form-control" type="text" value="Disabled readonly input" aria-label="Disabled input example" disabled readonly>
   </div>
   <div class="mb-3">
-    <label for="inputBirthdate" class="form-label">Должность</label>
-    <input type="text" name="position" class="form-control" id="inputBirthdate">
+    <label for="inputBirthdate" class="form-label">Дата рождения</label>
+    <input class="form-control" id="inputBirthdate" name="date" placeholder="MM/DD/YYY" type="text"/>
   </div>
     <div class="mb-3">
     <label for="inputWorkgroup" class="form-label">Рабочая группа</label>
