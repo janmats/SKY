@@ -21,10 +21,11 @@
       <td>{{ worker.name }}</td>
       <td>{{ worker.position }}</td>
       <td>{{ worker.workgroup.name }}</td>
+        <td><button type="button" class="btn btn-outline-warning">Редактировать</button></td>
       <form  method='POST' action="{% url 'deleteworker' id=worker.id %}">
          {% csrf_token %}
          <input type=hidden name='delete' value='{{worker.id}}'>
-         <td><button type="submit" class="btn btn-outline-danger">Удалить</button></td>
+         <td> <button type="submit" class="btn btn-outline-danger">Удалить</button></td>
       </form>
     </tr>
   {% endfor %}

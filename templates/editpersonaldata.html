@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}title{% endblock %}
+
+{% block content %}
+
+<form method="post" action="createworker">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="inputName" class="form-label">ФИО</label>
+   <input id = "inputName" class="form-control" type="text" value="Disabled readonly input" aria-label="Disabled input example" disabled readonly>
+  </div>
+  <div class="mb-3">
+    <label for="inputBirthdate" class="form-label">Должность</label>
+    <input type="text" name="position" class="form-control" id="inputBirthdate">
+  </div>
+    <div class="mb-3">
+    <label for="inputWorkgroup" class="form-label">Рабочая группа</label>
+    <select id="inputWorkgroup" name = "workgroup" class="form-select" aria-label="Default select example">
+      <option selected>Open this select menu</option>
+      {% for workgroup in workgroups %}
+
+      <option value="{{ workgroup.name }}">{{ workgroup.name }}</option>
+
+      {% endfor %}
+
+     </select>
+    </div>
+    <input class="btn btn-primary" type="submit" value="Добавить" />
+</form>
+
+{% endblock %}
