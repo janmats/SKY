@@ -46,4 +46,10 @@ def createworkgroup(request):
 
             return redirect('/groups')
 
+def deleteworkgroup(request, id):
+    if request.method=='POST':
+       workgroup = Workgroup.objects.get(id=id)
+       workgroup.delete()
+       return redirect('/groups')
+
 

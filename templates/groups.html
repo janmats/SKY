@@ -19,7 +19,11 @@
     <tr>
       <th scope="row">{{ forloop.counter }}</th>
       <td>{{ workgroup.name }}</td>
-      <td><button type="submit" class="btn btn-outline-danger">Удалить</button></td>
+          <form  method='POST' action="{% url 'deleteworkgroup' id=workgroup.id %}">
+         {% csrf_token %}
+         <input type=hidden name='delete' value='{{workgroup.id}}'>
+         <td><button type="submit" class="btn btn-outline-danger">Удалить</button></td>
+      </form>
     </tr>
   {% endfor %}
   </tbody>
