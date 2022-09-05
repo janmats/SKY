@@ -4,6 +4,11 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from web.models import *
 from django.utils.dateparse import parse_date
+import logging
+
+#l = logging.getLogger('django.db.backends')
+#l.setLevel(logging.DEBUG)
+#l.addHandler(logging.StreamHandler())
 
 @login_required
 def index(request):
