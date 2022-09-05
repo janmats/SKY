@@ -10,6 +10,6 @@ class Worker(models.Model):
 
 class Personaldata(models.Model):
     worker = models.OneToOneField(Worker, on_delete=models.CASCADE)
-    birthdate = models.DateField()
-    address = models.CharField(max_length=30)
-    email = models.CharField(max_length=30)
+    birthdate = models.DateField(null=True)
+    address = models.CharField(max_length=30, null=True)
+    email = models.CharField(max_length=30, null=True)

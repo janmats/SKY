@@ -2,6 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import redirect
 from web.models import *
+from django.utils.dateparse import parse_date
+
 
 def index(request):
     return render(request, 'index.html', {
@@ -56,18 +58,19 @@ def deleteworkgroup(request, id):
 def editpersonaldata(request, id):
     if request.method=='GET':
         return render(request, 'editpersonaldata.html', {
-        'worker':Worker.objects.get(id=id)
+        'worker':Worker.objects.get(id=id),
+        'personaldata':Personaldata.objects.get(worker_id=id)
     })
     else:
         if request.method=='POST':
 
             worker = Worker.objects.get(id=id)
-            birthdate = request.POST['birthdate']
-            address = request.POST['address']
-            email = request.POST['email']
-
-            Personaldata(worker=worker, birthdate=birthdate, address=address, email=email).save()
-
+            personaldata = Personaldata.objects.get(worker=worker)
+            date = request.POST['birthdate']
+            personaldata.birthdate = parse_date(date)
+            personaldata.address = request.POST['address']
+            personaldata.email = request.POST['email']
+            personaldata.save()
             return redirect('/')
 
 

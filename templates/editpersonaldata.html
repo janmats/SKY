@@ -3,38 +3,40 @@
 {% block title %}title{% endblock %}
 
 {% block content %}
-
 <script>
     $(document).ready(function(){
-      var date_input=$('input[name="birthdate"]'); //our date input has the name "date"
+      var date_input=$('input[name="birthdate"]');
+      var date = document.getElementById("inputBirthdate").value;
       var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
       var options={
-        format: 'mm/dd/yyyy',
+        format: 'yyyy-mm-dd',
         container: container,
         todayHighlight: true,
         autoclose: true,
       };
       date_input.datepicker(options);
+      date_input.datepicker('update', date);
     })
 </script>
 
-<form method="post" action="editpersonaldata">
+<form method="post" action="{% url 'editpersonaldata' id=worker.id %}">
   {% csrf_token %}
   <div class="mb-3">
     <label for="inputName" class="form-label">ФИО</label>
    <input id = "inputName" class="form-control" type="text" value="{{worker.name}}" aria-label="Disabled input example" disabled readonly>
   </div>
   <div class="mb-3">
+    <label></label>
     <label for="inputBirthdate" class="form-label">Дата рождения</label>
-    <input class="form-control" id="inputBirthdate" name="birthdate" placeholder="MM/DD/YYY" type="text"/>
+    <input class="form-control" id="inputBirthdate" name="birthdate" placeholder="yyyy-mm-dd" type="text" value="{{personaldata.birthdate|date:'Y-m-d'}}"/>
   </div>
     <div class="mb-3">
     <label for="inputAddress" class="form-label">Адрес</label>
-    <input type="text" name="address" class="form-control" id="inputAddress">
+    <input type="text" name="address" class="form-control" id="inputAddress" value="{{personaldata.address}}">
   </div>
   <div class="mb-3">
     <label for="inputEmail" class="form-label">Электронная почта</label>
-    <input type="text" name="email" class="form-control" id="inputEmail">
+    <input type="text" name="email" class="form-control" id="inputEmail" value="{{personaldata.email}}">
   </div>
   <input class="btn btn-primary" type="submit" value="Сохранить" />
 </form>
