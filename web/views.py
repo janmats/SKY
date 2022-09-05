@@ -1,20 +1,23 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import redirect
 from web.models import *
 from django.utils.dateparse import parse_date
 
-
+@login_required
 def index(request):
     return render(request, 'index.html', {
         'workers':Worker.objects.all()
     })
 
+@login_required
 def groups(request):
     return render(request, 'groups.html', {
         'workgroups':Workgroup.objects.all()
     })
 
+@login_required
 def help(request):
     return render(request, 'help.html')
 
