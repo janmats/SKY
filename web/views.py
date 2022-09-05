@@ -57,10 +57,18 @@ def deleteworkgroup(request, id):
 
 def editpersonaldata(request, id):
     if request.method=='GET':
-        return render(request, 'editpersonaldata.html', {
-        'worker':Worker.objects.get(id=id),
-        'personaldata':Personaldata.objects.get(worker_id=id)
-    })
+        if Personaldata.objects.filter(worker_id=id).exists():
+           return render(request, 'editpersonaldata.html', {
+           'worker':Worker.objects.get(id=id),
+           'personaldata':Personaldata.objects.get(worker_id=id)
+       })
+        else:
+            worker = Worker.objects.get(id=id)
+            personaldata = Personaldata(worker=worker, birthdate=None, address=None, email=None).save()
+            return render(request, 'editpersonaldata.html', {
+                'worker': Worker.objects.get(id=id),
+                'personaldata': personaldata
+            })
     else:
         if request.method=='POST':
 
