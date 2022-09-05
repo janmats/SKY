@@ -28,9 +28,14 @@ def createworker(request):
         position = request.POST['position']
         workgroupname = request.POST['workgroup']
         workgroup = Workgroup.objects.get(name=workgroupname)
-
-        Worker(name=name, position=position, workgroup=workgroup).save()
-
+        #Worker(name=name, position=position, workgroup=workgroup).save()
+        worker = Worker(name=name, position=position, workgroup=workgroup)
+        worker.save()
+        date = request.POST['birthdate']
+        birthdate = parse_date(date)
+        address = request.POST['address']
+        email = request.POST['email']
+        Personaldata(worker=worker, birthdate=birthdate, address=address, email=email).save()
         return redirect('/')
 
 def deleteworker(request, id):

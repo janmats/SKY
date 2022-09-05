@@ -3,6 +3,19 @@
 {% block title %}title{% endblock %}
 
 {% block content %}
+<script>
+    $(document).ready(function(){
+      var date_input=$('input[name="birthdate"]');
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'yyyy-mm-dd',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
+</script>
 
 <form method="post" action="createworker">
   {% csrf_token %}
@@ -26,6 +39,18 @@
 
      </select>
     </div>
+  <div class="mb-3">
+    <label for="inputBirthdate" class="form-label">Дата рождения</label>
+    <input class="form-control" id="inputBirthdate" name="birthdate" placeholder="yyyy-mm-dd" type="text" value="{{personaldata.birthdate|date:'Y-m-d'}}"/>
+  </div>
+    <div class="mb-3">
+    <label for="inputAddress" class="form-label">Адрес</label>
+    <input type="text" name="address" class="form-control" id="inputAddress" value="{{personaldata.address}}">
+  </div>
+  <div class="mb-3">
+    <label for="inputEmail" class="form-label">Электронная почта</label>
+    <input type="text" name="email" class="form-control" id="inputEmail" value="{{personaldata.email}}">
+  </div>
     <input class="btn btn-primary" type="submit" value="Добавить" />
 </form>
 
